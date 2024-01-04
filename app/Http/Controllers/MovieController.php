@@ -44,10 +44,11 @@ class MovieController extends ApiController
         if (empty($data)) {
             return $this->errorResponse('No data provided for update', 400);
         }
-        
+
         $movieDTO = new MovieDTO(...$data);
-        $movie = $this->movieRepository->update($movie->id, $movieDTO->toArray());
-        return $this->showInstance($movie, 'movie');
+
+        $movie = $this->movieRepository->update($movieDTO->toArray(), $movie->id);
+        return $this->successResponse($movie, 'movie');
     }
 
     public function destroy(Movie $movie)

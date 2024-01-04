@@ -22,7 +22,7 @@ class StoreDirectorRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required|string',
+            'name' => 'required|string|unique:directors',
             'image' => 'required|string',
             'description' => 'required|string',
             'nationality' => 'required|string',

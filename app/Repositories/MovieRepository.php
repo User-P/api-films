@@ -16,18 +16,17 @@ class MovieRepository implements MovieRepositoryInterface
         return Movie::create($data);
     }
 
-    public function update(array $data, $id)
-    {
-        return Movie::where('id', $id)->update($data);
+    public function update(array $data, $id){
+        Movie::where('id', $id)->update($data);
+        return Movie::find($id);
     }
 
-    public function delete($id)
-    {
+    public function delete($id){
         return Movie::where('id', $id)->delete();
     }
 
-    public function find($id)
-    {
+    public function find($id){
         return Movie::find($id);
     }
+
 }

@@ -22,11 +22,11 @@ class UpdateDirectorRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required|string|max:255',
-            'image' => 'required|string',
-            'description' => 'required|string',
-            'nationality' => 'required|string',
-            'birth' => 'required|date',
+            'name' => 'string|max:255',
+            'image' => 'string',
+            'description' => 'string',
+            'nationality' => 'string',
+            'birth' => 'date',
             'death' => 'nullable|date',
         ];
     }
