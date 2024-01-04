@@ -73,11 +73,11 @@ class Handler extends ExceptionHandler
             return $this->errorResponse("El método especificado en la petición no es valido.", 405);
         }
 
-        if ($exception instanceof BadMethodCallException) {
-            $errorMessage = $exception->getMessage();
+        // if ($exception instanceof BadMethodCallException) {
+        //     $errorMessage = $exception->getMessage();
 
-            return $this->errorResponse("Error en la llamada a un método: $errorMessage", 500);
-        }
+        //     return $this->errorResponse("Error en la llamada a un método: $errorMessage", 500);
+        // }
 
         if ($exception instanceof HttpException) {
             return $this->errorResponse($exception->getMessage(), $exception->getStatusCode());
@@ -137,9 +137,9 @@ class Handler extends ExceptionHandler
             }
         }
 
-        if ($exception instanceof ArgumentCountError) {
-            return $this->errorResponse('Error en la llamada a un método: El número de argumentos es incorrecto.', 500);
-        }
+        // if ($exception instanceof ArgumentCountError) {
+        //     return $this->errorResponse('Error en la llamada a un método: El número de argumentos es incorrecto.', 500);
+        // }
 
         if ($exception instanceof TokenMismatchException) {
             return redirect()->back()->withInput($request->input());
