@@ -1,0 +1,188 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "API Directos",
+        "version": "1.0"
+    },
+    "servers": [
+        {
+            "url": "https://api-films.test"
+        }
+    ],
+    "paths": {
+        "/directors": {
+            "get": {
+                "tags": [
+                    "Directors"
+                ],
+                "summary": "List all directors",
+                "operationId": "0f833317cb68876118c71350fe305520",
+                "responses": {
+                    "200": {
+                        "description": "Returns a list of directors"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Directors"
+                ],
+                "summary": "Create a new director",
+                "operationId": "06e33c53542435ca922b2e4757b57b39",
+                "requestBody": {
+                    "description": "Data for the new director",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "name",
+                                    "image",
+                                    "description",
+                                    "nationality",
+                                    "birth"
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "description": "The name of the director",
+                                        "type": "string",
+                                        "example": "Quentin Tarantino"
+                                    },
+                                    "image": {
+                                        "description": "URL or path to the director's image",
+                                        "type": "string",
+                                        "example": "http://example.com/image.jpg"
+                                    },
+                                    "description": {
+                                        "description": "Brief description about the director",
+                                        "type": "string",
+                                        "example": "American film director and actor known for..."
+                                    },
+                                    "nationality": {
+                                        "description": "The nationality of the director",
+                                        "type": "string",
+                                        "example": "American"
+                                    },
+                                    "birth": {
+                                        "description": "Director's date of birth",
+                                        "type": "string",
+                                        "format": "date",
+                                        "example": "1963-03-27"
+                                    },
+                                    "death": {
+                                        "description": "Director's date of death if applicable",
+                                        "type": "string",
+                                        "format": "date",
+                                        "example": ""
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Director created"
+                    }
+                }
+            }
+        },
+        "/directors/{id}": {
+            "get": {
+                "tags": [
+                    "Directors"
+                ],
+                "summary": "Get details of a specific director",
+                "operationId": "2ac24f5d164e379f8e3e5f28f76f39fb",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Unique identifier of the director",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success, returns the director details"
+                    },
+                    "404": {
+                        "description": "Director not found"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Directors"
+                ],
+                "summary": "Update an existing director",
+                "operationId": "3377a8f12888c41fadd25a21a6e00603",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Unique identifier of the director to be updated",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "description": "Partial or full data to update a director. None of the fields are required.",
+                    "required": false,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "name": {
+                                        "description": "The name of the director",
+                                        "type": "string"
+                                    },
+                                    "image": {
+                                        "description": "URL or path to the director's image",
+                                        "type": "string"
+                                    },
+                                    "description": {
+                                        "description": "Brief description about the director",
+                                        "type": "string"
+                                    },
+                                    "nationality": {
+                                        "description": "The nationality of the director",
+                                        "type": "string"
+                                    },
+                                    "birth": {
+                                        "description": "Director's date of birth",
+                                        "type": "string",
+                                        "format": "date"
+                                    },
+                                    "death": {
+                                        "description": "Director's date of death if applicable",
+                                        "type": "string",
+                                        "format": "date"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success, returns updated director details"
+                    },
+                    "400": {
+                        "description": "No data provided for update"
+                    },
+                    "404": {
+                        "description": "Director not found"
+                    }
+                }
+            }
+        }
+    }
+}
