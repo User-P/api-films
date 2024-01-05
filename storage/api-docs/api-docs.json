@@ -1,7 +1,7 @@
 {
     "openapi": "3.0.0",
     "info": {
-        "title": "API Directos",
+        "title": "API-FILMS",
         "version": "1.0"
     },
     "servers": [
@@ -180,6 +180,149 @@
                     },
                     "404": {
                         "description": "Director not found"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Directors"
+                ],
+                "summary": "Deletes a director",
+                "operationId": "f847d3a682f227e7fa846702bff7443b",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Unique identifier of the director to delete",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "director deleted successfully"
+                    },
+                    "404": {
+                        "description": "director not found"
+                    }
+                }
+            }
+        },
+        "/movies": {
+            "get": {
+                "tags": [
+                    "Movies"
+                ],
+                "summary": "List all movies",
+                "operationId": "f6db105a5155da098f103918cf6fa1c7",
+                "responses": {
+                    "200": {
+                        "description": "Returns a list of movies"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Movies"
+                ],
+                "summary": "Create a new movie",
+                "operationId": "2eb871b36c915e07dc15b5245aa42b3b",
+                "requestBody": {
+                    "description": "Data for the new movie",
+                    "required": true
+                },
+                "responses": {
+                    "201": {
+                        "description": "Movie created"
+                    }
+                }
+            }
+        },
+        "/movies/{id}": {
+            "get": {
+                "tags": [
+                    "Movies"
+                ],
+                "summary": "Get details of a specific movie",
+                "operationId": "6f94f534d53b3791afe1dfa7c347df1c",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Unique identifier of the movie",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success, returns the movie details"
+                    },
+                    "404": {
+                        "description": "Movie not found"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Movies"
+                ],
+                "summary": "Update an existing movie",
+                "operationId": "95a5785e11633492be890b38cb0da886",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Unique identifier of the movie to be updated",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "description": "Partial or full data to update a movie. None of the fields are required.",
+                    "required": false
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success, returns updated movie details"
+                    },
+                    "400": {
+                        "description": "No data provided for update"
+                    },
+                    "404": {
+                        "description": "Movie not found"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Movies"
+                ],
+                "summary": "Deletes a movie",
+                "operationId": "234a769d4016482aeeeb45978f804c80",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Unique identifier of the movie to delete",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Movie deleted successfully"
+                    },
+                    "404": {
+                        "description": "Movie not found"
                     }
                 }
             }

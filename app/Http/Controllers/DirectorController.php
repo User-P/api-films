@@ -9,7 +9,7 @@ use App\Http\Requests\UpdateDirectorRequest;
 use App\Repositories\DirectorRepositoryInterface;
 
 /**
- * @OA\Info(title="API Directos", version="1.0")
+ * @OA\Info(title="API-FILMS", version="1.0")
  * @OA\Server(url="https://api-films.test")
  */
 
@@ -66,9 +66,9 @@ class DirectorController extends ApiController
     public function store(StoreDirectorRequest $request)
     {
         $data = $request->validated();
-        $movieDTO = new DirectorDTO(...$data);
+        $directorDTO = new DirectorDTO(...$data);
 
-        $director = $this->directorRepository->create($movieDTO->toArray());
+        $director = $this->directorRepository->create($directorDTO->toArray());
         return $this->showInstance($director, 'director');
     }
 
@@ -149,11 +149,33 @@ class DirectorController extends ApiController
             return $this->errorResponse('No data provided for update', 400);
         }
 
-        $movieDTO = new DirectorDTO(...$data);
-        $director = $this->directorRepository->update($movieDTO->toArray(), $director->id);
+        $directorDTO = new DirectorDTO(...$data);
+        $director = $this->directorRepository->update($directorDTO->toArray(), $director->id);
         return $this->showInstance($director, 'director');
     }
 
+    /**
+     * @OA\Delete(
+     *     path="/directors/{id}",
+     *     summary="Deletes a director",
+     *     tags={"Directors"},
+     *     @OA\Parameter(
+     *         name="id",
+     *         in="path",
+     *         required=true,
+     *         description="Unique identifier of the director to delete",
+     *         @OA\Schema(type="integer")
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="director deleted successfully"
+     *     ),
+     *     @OA\Response(
+     *         response=404,
+     *         description="director not found"
+     *     )
+     * )
+     */
     public function destroy(Director $director)
     {
         $this->directorRepository->delete($director->id);
